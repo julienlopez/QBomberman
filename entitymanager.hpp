@@ -3,30 +3,28 @@
 
 #include <utils/singleton.hpp>
 
-#include "components/component.hpp"
+#include "entity.hpp"
 
-#include <cstdint>
-#include <list>
-#include <memory>
-#include <map>
+#include <vector>
 
-class EntityManager : public utils::Singleton<EntityManager>
+class EntityManager : private utils::Singleton<EntityManager>
 {
-	typedef uint64_t type_id;
-	typedef uint16_t type_key;
+    friend class utils::Singleton<EntityManager>;
+
+public:
+    typedef std::size_t type_id;
+    typedef Component::type_key type_key;
 
 	static type_key geTkey(type_id id);
 
+    static type_key addEntity(Entity::type_list_components&& lst);
+
 private:
-	struct Entity
-	{
-		type_key key;
-        std::list<std::unique_ptr<Component>> components;
-	};
+    EntityManager() = default;
 
-    typedef std::map<type_id, Entity> type_map;
+    typedef std::vector<Entity> type_containr;
 
-    type_map m_entities;
+    type_containr m_entities;
 };
 
 #endif

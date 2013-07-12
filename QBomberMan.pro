@@ -16,7 +16,15 @@ QMAKE_CXXFLAGS += -std=gnu++11
 SOURCES += main.cpp\
         mainwindow.cpp \
     screen.cpp \
-    entitymanager.cpp
+    entitymanager.cpp \
+    components/componentfactory.cpp \
+    components/screenposition.cpp \
+    components/tileposition.cpp \
+    components/velocity.cpp \
+    components/graphic.cpp \
+    entity.cpp \
+    systems/system.cpp \
+    systems/systemmanager.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -28,4 +36,16 @@ HEADERS  += mainwindow.hpp \
     entitymanager.hpp \
     utils/utils.hpp \
     utils/parametertrait.hpp \
-    static_tests/test_parameter_traits.hpp
+    static_tests/test_parameter_traits.hpp \
+    components/componentfactory.hpp \
+    utils/noninstanciable.hpp \
+    components/crtp_component.hpp \
+    components/screenposition.hpp \
+    utils/point.hpp \
+    components/tileposition.hpp \
+    components/velocity.hpp \
+    components/graphic.hpp \
+    entity.hpp \
+    systems/system.hpp \
+    typedefs.hpp \
+    systems/systemmanager.hpp

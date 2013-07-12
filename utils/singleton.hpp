@@ -1,20 +1,16 @@
 #ifndef SINGLETON_HPP
 #define SINGLETON_HPP
 
-#include "utils.hpp"
+#include <utils/noncopiable.hpp>
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class Singleton {
+template<class T> class Singleton : public noncopiable {
 public:
     static T& instance() {
         static T i;
         return i;
     }
-
-private:
-    Singleton(const Singleton&);
-    Singleton& operator=(const Singleton&);
 
 protected:
     Singleton() {}

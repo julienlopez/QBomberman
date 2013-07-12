@@ -5,8 +5,14 @@
 
 BEGIN_NAMESPACE_UTILS
 
+/**
+  * \brief Defines a non-copiable class.
+  */
 class noncopiable
 {
+protected:
+    noncopiable() = default;
+
     noncopiable(const noncopiable&) = delete;
     noncopiable(noncopiable&&) = delete;
 

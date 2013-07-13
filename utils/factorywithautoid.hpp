@@ -8,8 +8,6 @@
 #include <functional>
 #include <cassert>
 
-#include <iostream>
-
 BEGIN_NAMESPACE_UTILS
 
 template<	class AbstractProduct,
@@ -37,13 +35,11 @@ public:
 
     static IdentifierType registerProduct(ProductCreator creator)
     {
-        std::cerr << "registerProduct()" << std::endl;
         FactoryWithAutoId& inst = FactoryWithAutoId::instance();
         std::size_t pos = inst.m_containr.size();
         assert(pos < AbstractProduct::nbMax);
         inst.m_containr.push_back(creator);
         IdentifierType res = storage_policy::pos2id(pos);
-        std::cerr << "product " << typeid(AbstractProduct).name() << " registered with id " << res << " (" << val2bin(res) << ")" << std::endl;
         return res;
     }
 

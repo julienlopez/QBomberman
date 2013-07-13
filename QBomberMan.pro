@@ -40,7 +40,6 @@ HEADERS  += mainwindow.hpp \
     entitymanager.hpp \
     utils/utils.hpp \
     utils/parametertrait.hpp \
-    static_tests/test_parameter_traits.hpp \
     components/componentfactory.hpp \
     utils/noninstanciable.hpp \
     components/crtp_component.hpp \
@@ -60,3 +59,5 @@ HEADERS  += mainwindow.hpp \
     systems/crtp_system.hpp \
     systems/systemfactory.hpp \
     systems/movement.hpp \
+    systems/requirementmaker.hpp \
+    static_tests/test_parameter_traits.hpp

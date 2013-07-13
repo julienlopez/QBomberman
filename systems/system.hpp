@@ -12,6 +12,8 @@ class System : public utils::noncopiable
 public:
     typedef QBomberMan::type_key type_key;
 
+    static constexpr uint16_t nbMax = -1;
+
     virtual ~System() = default;
 
     virtual type_key requirement() const =0;

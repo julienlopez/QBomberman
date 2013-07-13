@@ -9,6 +9,8 @@ QT       += core gui
 TARGET = QBomberMan
 TEMPLATE = app
 
+greaterThan(QT_MAJOR_VERSION,4):QT+=widgets
+
 INCLUDEPATH += .
 
 QMAKE_CXXFLAGS += -std=gnu++11
@@ -17,14 +19,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     screen.cpp \
     entitymanager.cpp \
-    components/componentfactory.cpp \
     components/screenposition.cpp \
     components/tileposition.cpp \
     components/velocity.cpp \
     components/graphic.cpp \
     entity.cpp \
     systems/system.cpp \
-    systems/systemmanager.cpp
+    systems/systemmanager.cpp \
+    systems/display.cpp \
+    utils/utils.cpp \
+    systems/movement.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -48,4 +52,11 @@ HEADERS  += mainwindow.hpp \
     entity.hpp \
     systems/system.hpp \
     typedefs.hpp \
-    systems/systemmanager.hpp
+    systems/systemmanager.hpp \
+    systems/display.hpp \
+    utils/factorywithautoid.hpp \
+    utils/defaultfactorystoragepolicies.hpp \
+    utils/clonable.hpp \
+    systems/crtp_system.hpp \
+    systems/systemfactory.hpp \
+    systems/movement.hpp \

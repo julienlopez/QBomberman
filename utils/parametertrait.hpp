@@ -3,6 +3,8 @@
 
 #include <utils/utils.hpp>
 
+#include <type_traits>
+
 BEGIN_NAMESPACE_UTILS
 
 template<class T> struct parameter_trait {

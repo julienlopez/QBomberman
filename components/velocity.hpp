@@ -9,6 +9,7 @@ class Velocity : public CRTP_Component<Velocity>
 {
 public:
     Velocity();
+    Velocity(const Velocity&);
 
 private:
     PointF m_vector;

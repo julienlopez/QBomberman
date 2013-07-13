@@ -9,6 +9,7 @@ class TilePosition : public CRTP_Component<TilePosition>
 {
 public:
     TilePosition();
+    TilePosition(const TilePosition&);
 
 private:
     PointF m_pos;

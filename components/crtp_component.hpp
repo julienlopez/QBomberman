@@ -20,6 +20,7 @@ protected:
         return new T(static_cast<const T&>(*this));
     }
 
+public:
     static const type_key s_key;
 };
 

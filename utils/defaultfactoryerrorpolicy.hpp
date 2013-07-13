@@ -31,7 +31,7 @@ public:
 	};
 	
 protected:
-    static ProductType* onUnknownType(typename parameter_trait<IdentifierType>::const_reference id)
+    static ProductType* onUnknownType(typename const_parameter_trait<IdentifierType>::type id)
 	{
 		throw Exception(id);
 	}

@@ -26,9 +26,9 @@ SOURCES += main.cpp\
     entity.cpp \
     systems/system.cpp \
     systems/systemmanager.cpp \
-    systems/display.cpp \
     utils/utils.cpp \
-    systems/movement.cpp
+    systems/movement.cpp \
+    systems/tiledisplay.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -52,7 +52,6 @@ HEADERS  += mainwindow.hpp \
     systems/system.hpp \
     typedefs.hpp \
     systems/systemmanager.hpp \
-    systems/display.hpp \
     utils/factorywithautoid.hpp \
     utils/defaultfactorystoragepolicies.hpp \
     utils/clonable.hpp \
@@ -60,4 +59,5 @@ HEADERS  += mainwindow.hpp \
     systems/systemfactory.hpp \
     systems/movement.hpp \
     systems/requirementmaker.hpp \
-    static_tests/test_parameter_traits.hpp
+    static_tests/test_parameter_traits.hpp \
+    systems/tiledisplay.hpp

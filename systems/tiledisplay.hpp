@@ -1,15 +1,15 @@
-#ifndef DISPLAY_HPP
-#define DISPLAY_HPP
+#ifndef TILEDISPLAY_HPP
+#define TILEDISPLAY_HPP
 
 #include "crtp_system.hpp"
 #include "requirementmaker.hpp"
 #include <components/graphic.hpp>
 #include <components/tileposition.hpp>
 
-class Display : public CRTP_System<Display>, public RequirementMaker<Graphic, TilePosition>
+class TileDisplay : public CRTP_System<TileDisplay>, public RequirementMaker<Graphic, TilePosition>
 {
 public:
-    Display();
+    TileDisplay();
 
     virtual type_key requirement() const override;
 
@@ -17,4 +17,4 @@ private:
     virtual void do_update(Entity& entity, double dt) override;
 };
 
-#endif // DISPLAY_HPP
+#endif // TILEDISPLAY_HPP

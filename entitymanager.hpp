@@ -19,6 +19,8 @@ public:
 
     static type_key addEntity(Entity::type_list_components&& lst);
 
+    static void for_each(std::function<void(Entity&)> f);
+
 private:
     EntityManager() = default;
 

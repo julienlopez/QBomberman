@@ -17,3 +17,12 @@ EntityManager::type_key EntityManager::addEntity(Entity::type_list_components&& 
     inst.m_entities.emplace_back(std::move(lst));
     return res;
 }
+
+void EntityManager::for_each(std::function<void(Entity&)> f)
+{
+    EntityManager& inst = instance();
+    for(Entity& e : inst.m_entities)
+    {
+        f(e);
+    }
+}

@@ -19,6 +19,9 @@ void Screen::paintEvent(QPaintEvent * evt)
     Q_UNUSED(evt);
 
     QPainter p(this);
+    QPen pen = p.pen();
+    pen.setWidth(.1);
+    p.setPen(pen);
 
     p.drawLine(QPoint(0, height()-1), QPoint(width(), height()-1));
     p.drawLine(QPoint(width()-1, 0), QPoint(width()-1, height()));

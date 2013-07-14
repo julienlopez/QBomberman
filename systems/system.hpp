@@ -20,6 +20,10 @@ public:
 
     void update(double dt);
 
+protected:
+    virtual void preUpdate();
+    virtual void postUpdate();
+
 private:
     virtual void do_update(Entity& entity, double dt) =0;
 };

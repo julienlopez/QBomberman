@@ -6,6 +6,7 @@
 #include "entity.hpp"
 
 #include <vector>
+#include <stdexcept>
 
 class EntityManager : private utils::Singleton<EntityManager>
 {
@@ -20,6 +21,16 @@ public:
     static type_key addEntity(Entity::type_list_components&& lst);
 
     static void for_each(std::function<void(Entity&)> f);
+
+    template<class COMPONENT> static COMPONENT& getComponent(Entity& entity)
+    {
+        for(Entity::up_component& comp : entity.m_components)
+        {
+            if(comp->key() == COMPONENT::s_key)
+                return static_cast<COMPONENT&>(*comp);
+        }
+        throw std::logic_error("No such component " + std::string(typeid(COMPONENT).name()) + "for that entity");
+    }
 
 private:
     EntityManager() = default;

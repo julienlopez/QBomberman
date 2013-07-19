@@ -14,6 +14,12 @@ public:
     virtual ~MainWindow();
 
     Screen* m_screen;
+    QTimer* m_majTimer;
+
+    static constexpr double s_dt = .2;
+
+private slots:
+    void onMajTimerTimeout();
 };
 
 #endif // MAINWINDOW_HPP

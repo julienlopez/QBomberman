@@ -1,4 +1,5 @@
 #include "systemmanager.hpp"
+#include "tiledisplay.hpp"
 
 SystemManager::SystemManager()
 {
@@ -20,4 +21,10 @@ void SystemManager::update(double dt)
 void SystemManager::add(up_system&& system)
 {
     instance().m_container.push_back(std::move(system));
+}
+
+void SystemManager::addTileDisplaySystem(Screen* screen)
+{
+    TileDisplay* s = new TileDisplay(screen);
+    add(up_system(s));
 }

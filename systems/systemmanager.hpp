@@ -8,6 +8,8 @@
 #include <list>
 #include <memory>
 
+class Screen;
+
 class SystemManager : private utils::Singleton<SystemManager>
 {
     friend class utils::Singleton<SystemManager>;
@@ -21,6 +23,8 @@ public:
     static void update(double dt);
 
     static void add(up_system&& system);
+
+    static void addTileDisplaySystem(Screen* screen);
 
 private:
     SystemManager();

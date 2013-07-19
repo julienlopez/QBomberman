@@ -1,9 +1,7 @@
 #include "screen.hpp"
 
-#include <QPainter>
-
 Screen::Screen(QWidget *parent) :
-    QWidget(parent), m_largeur(10), m_hauteur(10)
+    QWidget(parent), m_largeur(11), m_hauteur(11)
 {
     setMinimumSize(800, 800);
 
@@ -12,6 +10,21 @@ Screen::Screen(QWidget *parent) :
     setPalette(p);
 
     setAutoFillBackground(true);
+}
+
+void Screen::resetImage()
+{
+    m_tiles.clear();
+}
+
+void Screen::finalizeImage()
+{
+
+}
+
+void Screen::addTile(const std::string& fileName, int x, int y)
+{
+    m_tiles.push_back(type_pair_tile(QPoint(x, y), QPixmap(QString::fromStdString(fileName))));
 }
 
 void Screen::paintEvent(QPaintEvent * evt)
@@ -27,6 +40,11 @@ void Screen::paintEvent(QPaintEvent * evt)
     p.drawLine(QPoint(width()-1, 0), QPoint(width()-1, height()));
 
     p.scale((double)width()/m_largeur, (double)height()/m_hauteur);
+
+    for(const type_pair_tile& tile : m_tiles)
+    {
+        p.drawPixmap(tile.first.x(), tile.first.y(), 1, 1, tile.second);
+    }
 
     printGrid(p);
 }

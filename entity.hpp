@@ -6,8 +6,12 @@
 #include <list>
 #include <memory>
 
+class EntityManager;
+
 class Entity
 {
+    friend class EntityManager;
+
 public:
     typedef Component::type_key type_key;
     typedef std::unique_ptr<Component> up_component;

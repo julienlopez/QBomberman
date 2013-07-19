@@ -8,11 +8,14 @@
 class TilePosition : public CRTP_Component<TilePosition>
 {
 public:
-    TilePosition();
+    TilePosition(const Point& pos = Point());
     TilePosition(const TilePosition&);
 
+    int x() const;
+    int y() const;
+
 private:
-    PointF m_pos;
+    Point m_pos;
 };
 
 #endif // TILEPOSITION_HPP

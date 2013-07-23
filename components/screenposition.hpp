@@ -8,8 +8,12 @@
 class ScreenPosition : public CRTP_Component<ScreenPosition>
 {
 public:
-    ScreenPosition();
+    ScreenPosition(const PointF& pos = PointF());
     ScreenPosition(const ScreenPosition&);
+
+    const PointF& pos() const;
+
+    void move(const PointF& d);
 
 private:
     PointF m_pos;

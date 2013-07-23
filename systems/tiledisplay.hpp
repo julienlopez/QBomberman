@@ -13,15 +13,8 @@ class TileDisplay : public CRTP_System<TileDisplay>, public RequirementMaker<Gra
 public:
     TileDisplay(Screen* screen = 0);
 
-    virtual type_key requirement() const override;
-
-//    void setScreen(Screen* screen);
-
 private:
     virtual void do_update(Entity& entity, double dt) override;
-
-    virtual void preUpdate() override;
-    virtual void postUpdate() override;
 
     Screen* m_screen;
 };

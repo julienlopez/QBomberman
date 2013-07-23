@@ -1,5 +1,6 @@
 #include "systemmanager.hpp"
 #include "tiledisplay.hpp"
+#include "screendisplay.hpp"
 
 SystemManager::SystemManager()
 {
@@ -25,6 +26,10 @@ void SystemManager::add(up_system&& system)
 
 void SystemManager::addTileDisplaySystem(Screen* screen)
 {
-    TileDisplay* s = new TileDisplay(screen);
-    add(up_system(s));
+    add(up_system(new TileDisplay(screen)));
+}
+
+void SystemManager::addScreenDisplaySystem(Screen* screen)
+{
+    add(up_system(new ScreenDisplay(screen)));
 }

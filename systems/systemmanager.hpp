@@ -26,6 +26,8 @@ public:
 
     static void addTileDisplaySystem(Screen* screen);
 
+    static void addScreenDisplaySystem(Screen* screen);
+
 private:
     SystemManager();
 

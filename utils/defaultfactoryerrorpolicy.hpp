@@ -13,7 +13,7 @@ public:
 	class Exception : public std::exception
 	{
 	public:
-        Exception(typename parameter_trait<IdentifierType>::const_reference id) : std::exception(), m_unknownId(id)
+        Exception(typename const_parameter_trait<IdentifierType>::type id) : std::exception(), m_unknownId(id)
 		{}
 		
 		virtual const char* what()
@@ -21,7 +21,7 @@ public:
 			return "Type inconnu passé à la factory.";
 		}
 		
-        typename parameter_trait<IdentifierType>::const_reference getId() const
+        typename const_parameter_trait<IdentifierType>::type getId() const
 		{
 			return m_unknownId;
 		}

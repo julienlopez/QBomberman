@@ -8,12 +8,15 @@ QT       += core gui
 
 TARGET = QBomberMan
 TEMPLATE = app
+CONFIG += no_keywords
 
 greaterThan(QT_MAJOR_VERSION,4):QT+=widgets
 
 INCLUDEPATH += .
 
 QMAKE_CXXFLAGS += -std=gnu++11
+
+LIBS += -lboost_signals
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -28,7 +31,10 @@ SOURCES += main.cpp\
     systems/systemmanager.cpp \
     utils/utils.cpp \
     systems/movement.cpp \
-    systems/tiledisplay.cpp
+    systems/tiledisplay.cpp \
+    systems/screendisplay.cpp \
+    systems/inputhandler.cpp \
+    components/inputtovelocity.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -60,4 +66,7 @@ HEADERS  += mainwindow.hpp \
     systems/movement.hpp \
     systems/requirementmaker.hpp \
     static_tests/test_parameter_traits.hpp \
-    systems/tiledisplay.hpp
+    systems/tiledisplay.hpp \
+    systems/screendisplay.hpp \
+    systems/inputhandler.hpp \
+    components/inputtovelocity.hpp

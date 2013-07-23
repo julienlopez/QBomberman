@@ -7,6 +7,9 @@
 #include "entitymanager.hpp"
 #include "components/tileposition.hpp"
 #include "components/graphic.hpp"
+#include "components/screenposition.hpp"
+#include "components/velocity.hpp"
+#include "components/inputtovelocity.hpp"
 
 Entity::type_list_components createTileEntity(const std::string& fileName, int x, int y)
 {
@@ -15,6 +18,18 @@ Entity::type_list_components createTileEntity(const std::string& fileName, int x
     res.push_back(Entity::up_component(pos));
     Graphic* graphic = new Graphic(fileName);
     res.push_back(Entity::up_component(graphic));
+    return res;
+}
+
+Entity::type_list_components spawnPlayer()
+{
+    Entity::type_list_components res;
+    ScreenPosition* pos = new ScreenPosition(PointF(.5, .5));
+    res.push_back(Entity::up_component(pos));
+    Graphic* graphic = new Graphic("images/player.png");
+    res.push_back(Entity::up_component(graphic));
+    res.push_back(Entity::up_component(new Velocity));
+    res.push_back(Entity::up_component(new InputToVelocity));
     return res;
 }
 
@@ -31,6 +46,7 @@ void initEntitiesTest()
             if(std::find(holes.begin(), holes.end(), Point(x, y)) == holes.end() && (x%2 != 1 || y%2 != 1))
                 EntityManager::addEntity(createTileEntity("images/tile1.png", x, y));
         }
+    EntityManager::addEntity(spawnPlayer());
 }
 
 int main(int argc, char *argv[])

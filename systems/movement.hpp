@@ -11,8 +11,6 @@ class Movement : public CRTP_System<Movement>, public RequirementMaker<ScreenPos
 public:
     Movement();
 
-    virtual type_key requirement() const override;
-
 private:
     virtual void do_update(Entity& entity, double dt) override;
 };

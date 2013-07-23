@@ -29,7 +29,7 @@ public:
     {
         FactoryWithAutoId& inst = FactoryWithAutoId::instance();
         std::size_t pos = storage_policy::pos2id(id);
-        if(pos >= inst.m_containr.size()) return onUnknownType(id);
+        if(pos >= inst.m_containr.size()) return error_policy::onUnknownType(id);
         return inst.m_containr[pos]();
     }
 

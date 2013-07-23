@@ -13,6 +13,7 @@ public:
     void resetImage();
     void finalizeImage();
     void addTile(const std::string& fileName, int x, int y);
+    void addObject(const std::string& fileName, double x, double y);
 
 protected:
     virtual void paintEvent(QPaintEvent * evt);
@@ -25,12 +26,10 @@ private:
     typedef QPair<QPoint, QPixmap> type_pair_tile;
     QList<type_pair_tile> m_tiles;
 
-    void printGrid(QPainter& p) const;
-    
-signals:
-    
-public slots:
-    
+    typedef QPair<QPointF, QPixmap> type_pair_object;
+    QList<type_pair_object> m_objects;
+
+    void printGrid(QPainter& p) const;    
 };
 
 #endif // SCREEN_HPP

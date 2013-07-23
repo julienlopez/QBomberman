@@ -15,6 +15,7 @@ Screen::Screen(QWidget *parent) :
 void Screen::resetImage()
 {
     m_tiles.clear();
+    m_objects.clear();
 }
 
 void Screen::finalizeImage()
@@ -27,6 +28,11 @@ void Screen::addTile(const std::string& fileName, int x, int y)
     m_tiles.push_back(type_pair_tile(QPoint(x, y), QPixmap(QString::fromStdString(fileName))));
 }
 
+void Screen::addObject(const std::string& fileName, double x, double y)
+{
+    m_objects.push_back(type_pair_object(QPointF(x, y), QPixmap(QString::fromStdString(fileName))));
+}
+#include <QDebug>
 void Screen::paintEvent(QPaintEvent * evt)
 {
     Q_UNUSED(evt);
@@ -44,6 +50,13 @@ void Screen::paintEvent(QPaintEvent * evt)
     for(const type_pair_tile& tile : m_tiles)
     {
         p.drawPixmap(tile.first.x(), tile.first.y(), 1, 1, tile.second);
+    }
+
+    for(const type_pair_object& object : m_objects)
+    {
+        QPixmap pix = object.second;
+        QPointF pos(object.first.x() - 0.5, object.first.y() - 0.5);
+        p.drawPixmap(QRectF(pos, QSizeF(1, 1)), pix, QRectF(QPointF(0,0),QSizeF(256,256)));
     }
 
     printGrid(p);

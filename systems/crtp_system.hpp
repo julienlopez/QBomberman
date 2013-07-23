@@ -15,6 +15,12 @@ protected:
         return s_key;
     }
 
+    virtual type_key requirement() const override
+    {
+        return T::makeRequirement();
+    }
+
+public:
     static const type_key s_key;
 };
 

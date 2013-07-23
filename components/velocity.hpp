@@ -11,7 +11,6 @@ public:
     Velocity();
     Velocity(const Velocity&);
 
-private:
     PointF m_vector;
 };
 

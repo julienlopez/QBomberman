@@ -20,12 +20,10 @@ public:
 
     void update(double dt);
 
-protected:
+private:
     virtual void preUpdate();
     virtual void postUpdate();
-
-private:
-    virtual void do_update(Entity& entity, double dt) =0;
+    virtual void do_update(double dt) =0;
 };
 
 #endif // SYSTEM_HPP

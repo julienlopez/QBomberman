@@ -3,9 +3,12 @@
 
 #include "system.hpp"
 #include "systemfactory.hpp"
+#include "updatepolicies.hpp"
 
-template<class T> class CRTP_System : public System
+template<class T, template<class> class UPDATE_POLICY = OneByOnePolicy> class CRTP_System : public System, public UPDATE_POLICY<T>
 {
+    friend class UPDATE_POLICY<T>;
+
 protected:
     template<typename... Args> CRTP_System(Args&&... args): System(std::forward<Args>(args)...)
     {}
@@ -20,10 +23,15 @@ protected:
         return T::makeRequirement();
     }
 
+    virtual void do_update(double dt) override
+    {
+        UPDATE_POLICY<T>::dispatchEntitiesForUpdate(dt);
+    }
+
 public:
     static const type_key s_key;
 };
 
-template<class T> const typename CRTP_System<T>::type_key CRTP_System<T>::s_key = SystemFactory::registerProduct([](){ return new T(); });
+template<class T, template<class> class UPDATE_POLICY> const typename CRTP_System<T, UPDATE_POLICY>::type_key CRTP_System<T, UPDATE_POLICY>::s_key = SystemFactory::registerProduct([](){ return new T(); });
 
 #endif // CRTP_SYSTEM_HPP

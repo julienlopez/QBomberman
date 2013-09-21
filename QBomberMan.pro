@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     systems/tiledisplay.cpp \
     systems/screendisplay.cpp \
     systems/inputhandler.cpp \
-    components/inputtovelocity.cpp
+    components/inputtovelocity.cpp \
+    systems/physics.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -69,4 +70,7 @@ HEADERS  += mainwindow.hpp \
     systems/tiledisplay.hpp \
     systems/screendisplay.hpp \
     systems/inputhandler.hpp \
-    components/inputtovelocity.hpp
+    components/inputtovelocity.hpp \
+    systems/updatepolicies.hpp \
+    utils/safepointer.hpp \
+    systems/physics.hpp

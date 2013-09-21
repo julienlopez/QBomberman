@@ -12,6 +12,7 @@
 
 # Qt-es
 
+QBomberMan.pri
 *.pro.user
 *.pro.user.*
 moc_*.cpp

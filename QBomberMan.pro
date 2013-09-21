@@ -16,8 +16,6 @@ INCLUDEPATH += .
 
 QMAKE_CXXFLAGS += -std=c++11
 
-LIBS += -lboost_signals
-
 include(QBomberMan.pri)
 
 SOURCES += main.cpp\

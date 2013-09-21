@@ -14,9 +14,11 @@ greaterThan(QT_MAJOR_VERSION,4):QT+=widgets
 
 INCLUDEPATH += .
 
-QMAKE_CXXFLAGS += -std=gnu++11
+QMAKE_CXXFLAGS += -std=c++11
 
 LIBS += -lboost_signals
+
+include(QBomberMan.pri)
 
 SOURCES += main.cpp\
         mainwindow.cpp \

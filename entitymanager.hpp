@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <algorithm>
 
 class EntityManager : private utils::Singleton<EntityManager>
 {
@@ -24,12 +25,15 @@ public:
 
     template<class COMPONENT> static COMPONENT& getComponent(Entity& entity)
     {
-        for(Entity::up_component& comp : entity.m_components)
-        {
-            if(comp->key() == COMPONENT::s_key)
-                return static_cast<COMPONENT&>(*comp);
-        }
-        throw std::logic_error("No such component " + std::string(typeid(COMPONENT).name()) + "for that entity");
+        Entity::type_list_components::iterator i = std::find_if(entity.m_components.begin(), entity.m_components.end(), [](Entity::up_component& comp){ return comp->key() == COMPONENT::s_key; });
+        if(i == entity.m_components.end())
+            throw std::logic_error("No such component " + std::string(typeid(COMPONENT).name()) + "for that entity");
+        return static_cast<COMPONENT&>(**i);
+    }
+
+    template<class COMPONENT> static bool hasComponent(Entity& entity)
+    {
+        return std::find_if(entity.m_components.cbegin(), entity.m_components.cend(), [](const Entity::up_component& comp){ return comp->key() == COMPONENT::s_key; }) != entity.m_components.cend();
     }
 
 private:

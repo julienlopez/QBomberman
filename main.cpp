@@ -5,7 +5,6 @@
 
 
 #include "entitymanager.hpp"
-#include "components/tileposition.hpp"
 #include "components/graphic.hpp"
 #include "components/screenposition.hpp"
 #include "components/velocity.hpp"
@@ -14,8 +13,8 @@
 Entity::type_list_components createTileEntity(const std::string& fileName, int x, int y)
 {
     Entity::type_list_components res;
-    TilePosition* pos = new TilePosition(Point(x, y));
-    res.push_back(Entity::up_component(pos));
+    Entity::up_component pos(new ScreenPosition(PointF(x+.5, y+.5)));
+    res.push_back(std::move(pos));
     Graphic* graphic = new Graphic(fileName);
     res.push_back(Entity::up_component(graphic));
     return res;
@@ -24,12 +23,20 @@ Entity::type_list_components createTileEntity(const std::string& fileName, int x
 Entity::type_list_components spawnPlayer()
 {
     Entity::type_list_components res;
-    ScreenPosition* pos = new ScreenPosition(PointF(.5, .5));
-    res.push_back(Entity::up_component(pos));
+    Entity::up_component pos(new ScreenPosition(PointF(.5, .5)));
+    res.push_back(std::move(pos));
     Graphic* graphic = new Graphic("images/player.png");
     res.push_back(Entity::up_component(graphic));
     res.push_back(Entity::up_component(new Velocity));
     res.push_back(Entity::up_component(new InputToVelocity));
+    return res;
+}
+
+Entity::type_list_components createWallEntity(int x, int y)
+{
+    Entity::type_list_components res;
+    Entity::up_component pos(new ScreenPosition(PointF(x+.5, y+.5)));
+    res.push_back(std::move(pos));
     return res;
 }
 
@@ -47,6 +54,18 @@ void initEntitiesTest()
                 EntityManager::addEntity(createTileEntity("images/tile1.png", x, y));
         }
     EntityManager::addEntity(spawnPlayer());
+
+    EntityManager::addEntity(createWallEntity(-1, -1));
+    EntityManager::addEntity(createWallEntity(11, -1));
+    EntityManager::addEntity(createWallEntity(11, 11));
+    EntityManager::addEntity(createWallEntity(-1, 11));
+    for(int i = 0; i < 11; i++)
+    {
+        EntityManager::addEntity(createWallEntity(-1, i));
+        EntityManager::addEntity(createWallEntity(11, i));
+        EntityManager::addEntity(createWallEntity(i, -1));
+        EntityManager::addEntity(createWallEntity(i, 11));
+    }
 }
 
 int main(int argc, char *argv[])

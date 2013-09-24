@@ -6,7 +6,7 @@
 #include <components/screenposition.hpp>
 #include <components/velocity.hpp>
 
-class Physics : public CRTP_System<Physics, ListPolicy>, public RequirementMaker<ScreenPosition, Velocity>
+class Physics : public CRTP_System<Physics, ListPolicy>, public RequirementMaker<ScreenPosition>
 {
 public:
     Physics() = default;

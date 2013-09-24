@@ -3,8 +3,6 @@
 
 #include <systems/systemmanager.hpp>
 #include <systems/inputhandler.hpp>
-#include <systems/movement.hpp>
-#include <systems/physics.hpp>
 
 #include <QVBoxLayout>
 #include <QTimer>
@@ -25,15 +23,14 @@ MainWindow::MainWindow(QWidget *parent)
     w->setLayout(layout);
     setCentralWidget(w);
 
-    SystemManager::addTileDisplaySystem(m_screen);
     SystemManager::addScreenDisplaySystem(m_screen);
 
     InputHandler* inputHandler = new InputHandler;
     currentKeyChanged().connect(std::bind(&InputHandler::setCurrentKey, inputHandler, std::placeholders::_1));
     SystemManager::add(SystemManager::up_system(inputHandler));
 
-    SystemManager::add(SystemManager::up_system(SystemFactory::create(Movement::s_key)));
-    SystemManager::add(SystemManager::up_system(SystemFactory::create(Physics::s_key)));
+    SystemManager::addMovementSystem();
+    SystemManager::addPhysicsSystem();
 
     startTimer();
 }

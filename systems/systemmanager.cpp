@@ -1,6 +1,7 @@
 #include "systemmanager.hpp"
-#include "tiledisplay.hpp"
 #include "screendisplay.hpp"
+#include "movement.hpp"
+#include "physics.hpp"
 
 SystemManager::SystemManager()
 {
@@ -24,12 +25,17 @@ void SystemManager::add(up_system&& system)
     instance().m_container.push_back(std::move(system));
 }
 
-void SystemManager::addTileDisplaySystem(Screen* screen)
-{
-    add(up_system(new TileDisplay(screen)));
-}
-
 void SystemManager::addScreenDisplaySystem(Screen* screen)
 {
     add(up_system(new ScreenDisplay(screen)));
+}
+
+void SystemManager::addMovementSystem()
+{
+    add(SystemManager::up_system(SystemFactory::create(Movement::s_key)));
+}
+
+void SystemManager::addPhysicsSystem()
+{
+    add(SystemManager::up_system(SystemFactory::create(Physics::s_key)));
 }

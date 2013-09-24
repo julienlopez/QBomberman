@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     screen.cpp \
     entitymanager.cpp \
     components/screenposition.cpp \
-    components/tileposition.cpp \
     components/velocity.cpp \
     components/graphic.cpp \
     entity.cpp \
@@ -31,7 +30,6 @@ SOURCES += main.cpp\
     systems/systemmanager.cpp \
     utils/utils.cpp \
     systems/movement.cpp \
-    systems/tiledisplay.cpp \
     systems/screendisplay.cpp \
     systems/inputhandler.cpp \
     components/inputtovelocity.cpp \
@@ -52,7 +50,6 @@ HEADERS  += mainwindow.hpp \
     components/crtp_component.hpp \
     components/screenposition.hpp \
     utils/point.hpp \
-    components/tileposition.hpp \
     components/velocity.hpp \
     components/graphic.hpp \
     entity.hpp \
@@ -67,7 +64,6 @@ HEADERS  += mainwindow.hpp \
     systems/movement.hpp \
     systems/requirementmaker.hpp \
     static_tests/test_parameter_traits.hpp \
-    systems/tiledisplay.hpp \
     systems/screendisplay.hpp \
     systems/inputhandler.hpp \
     components/inputtovelocity.hpp \

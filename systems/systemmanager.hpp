@@ -24,9 +24,10 @@ public:
 
     static void add(up_system&& system);
 
-    static void addTileDisplaySystem(Screen* screen);
-
     static void addScreenDisplaySystem(Screen* screen);
+
+    static void addMovementSystem();
+    static void addPhysicsSystem();
 
 private:
     SystemManager();

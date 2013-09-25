@@ -1,4 +1,6 @@
 #include "entitymanager.hpp"
+#include <components/screenposition.hpp>
+#include <components/graphic.hpp>
 
 EntityManager::type_key EntityManager::geTkey(type_id id)
 {
@@ -25,4 +27,14 @@ void EntityManager::for_each(std::function<void(Entity&)> f)
     {
         f(e);
     }
+}
+
+void EntityManager::createBomb(const ScreenPosition& position)
+{
+    Entity::type_list_components lst;
+    Entity::up_component pos(new ScreenPosition(position));
+    lst.push_back(std::move(pos));
+    Graphic* graphic = new Graphic("images/bomb.png");
+    lst.push_back(Entity::up_component(graphic));
+    addEntity(std::move(lst));
 }

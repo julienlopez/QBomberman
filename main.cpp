@@ -9,6 +9,7 @@
 #include "components/screenposition.hpp"
 #include "components/velocity.hpp"
 #include <components/player.hpp>
+#include <components/collisionbox.hpp>
 
 Entity::type_list_components createTileEntity(const std::string& fileName, int x, int y)
 {
@@ -17,6 +18,7 @@ Entity::type_list_components createTileEntity(const std::string& fileName, int x
     res.push_back(std::move(pos));
     Graphic* graphic = new Graphic(fileName);
     res.push_back(Entity::up_component(graphic));
+    res.push_back(Entity::up_component(new CollisionBox));
     return res;
 }
 
@@ -29,6 +31,7 @@ Entity::type_list_components spawnPlayer()
     res.push_back(Entity::up_component(graphic));
     res.push_back(Entity::up_component(new Velocity));
     res.push_back(Entity::up_component(new Player));
+    res.push_back(Entity::up_component(new CollisionBox));
     return res;
 }
 
@@ -37,6 +40,7 @@ Entity::type_list_components createWallEntity(int x, int y)
     Entity::type_list_components res;
     Entity::up_component pos(new ScreenPosition(PointF(x+.5, y+.5)));
     res.push_back(std::move(pos));
+    res.push_back(Entity::up_component(new CollisionBox));
     return res;
 }
 

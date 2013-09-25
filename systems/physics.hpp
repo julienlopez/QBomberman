@@ -4,9 +4,9 @@
 #include "crtp_system.hpp"
 #include "requirementmaker.hpp"
 #include <components/screenposition.hpp>
-#include <components/velocity.hpp>
+#include <components/collisionbox.hpp>
 
-class Physics : public CRTP_System<Physics, ListPolicy>, public RequirementMaker<ScreenPosition>
+class Physics : public CRTP_System<Physics, ListPolicy>, public RequirementMaker<ScreenPosition, CollisionBox>
 {
 public:
     Physics() = default;

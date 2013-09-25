@@ -9,6 +9,8 @@
 #include <stdexcept>
 #include <algorithm>
 
+class ScreenPosition;
+
 class EntityManager : private utils::Singleton<EntityManager>
 {
     friend class utils::Singleton<EntityManager>;
@@ -22,6 +24,8 @@ public:
     static type_key addEntity(Entity::type_list_components&& lst);
 
     static void for_each(std::function<void(Entity&)> f);
+
+    static void createBomb(const ScreenPosition& position);
 
     template<class COMPONENT> static COMPONENT& getComponent(Entity& entity)
     {

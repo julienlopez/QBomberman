@@ -7,7 +7,7 @@ namespace QBomberMan {
 
 typedef uint16_t type_key;
 
-enum KEYS {NONE, UP, DOWN, LEFT, RIGHT};
+enum KEYS {NONE, UP, DOWN, LEFT, RIGHT, SPACE};
 
 }
 

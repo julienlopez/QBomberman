@@ -3,6 +3,7 @@
 
 #include <systems/systemmanager.hpp>
 #include <systems/movementinputhandler.hpp>
+#include <systems/dropbombinputhandler.hpp>
 
 #include <QVBoxLayout>
 #include <QTimer>
@@ -28,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     MovementInputHandler* movementInputHandler = new MovementInputHandler;
     currentKeyChanged().connect(std::bind(&MovementInputHandler::setCurrentKey, movementInputHandler, std::placeholders::_1));
     SystemManager::add(SystemManager::up_system(movementInputHandler));
+
+    DropBombInputHandler* dropBombInputHandler = new DropBombInputHandler;
+    currentKeyChanged().connect(std::bind(&DropBombInputHandler::setCurrentKey, dropBombInputHandler, std::placeholders::_1));
+    SystemManager::add(SystemManager::up_system(dropBombInputHandler));
 
     SystemManager::addMovementSystem();
     SystemManager::addPhysicsSystem();
@@ -62,6 +67,7 @@ namespace
             case Qt::Key_Down: return QBomberMan::DOWN;
             case Qt::Key_Left: return QBomberMan::LEFT;
             case Qt::Key_Right: return QBomberMan::RIGHT;
+            case Qt::Key_Space: return QBomberMan::SPACE;
             default: return QBomberMan::NONE;
         }
     }

@@ -33,7 +33,9 @@ SOURCES += main.cpp\
     systems/screendisplay.cpp \
     systems/physics.cpp \
     systems/movementinputhandler.cpp \
-    components/player.cpp
+    components/player.cpp \
+    systems/dropbombinputhandler.cpp \
+    components/collisionbox.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -69,4 +71,6 @@ HEADERS  += mainwindow.hpp \
     utils/safepointer.hpp \
     systems/physics.hpp \
     systems/movementinputhandler.hpp \
-    components/player.hpp
+    components/player.hpp \
+    systems/dropbombinputhandler.hpp \
+    components/collisionbox.hpp

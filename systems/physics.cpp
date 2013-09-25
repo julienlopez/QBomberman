@@ -28,7 +28,13 @@ void Physics::do_update(ListPolicy::type_list_entities&& entities, double)
             ScreenPosition& pos2 = EntityManager::getComponent<ScreenPosition>(**j);
             QRectF rect1(pos1.pos().x(), pos1.pos().y(), size, size);
             QRectF rect2(pos2.pos().x(), pos2.pos().y(), size, size);
+
+#if QT_VERSION >= 0x050000
+            QRectF overlap = rect1.intersected(rect2);
+#else
             QRectF overlap = rect1.intersect(rect2);
+#endif
+
             if(overlap.isEmpty()) continue;
             bool canMove1 = EntityManager::hasComponent<Velocity>(**i);
             bool canMove2 = EntityManager::hasComponent<Velocity>(**j);

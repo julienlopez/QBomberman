@@ -10,6 +10,13 @@
 
 BEGIN_NAMESPACE_UTILS
 
+/**
+ * \class FactoryWithAutoId factorywithautoid.hpp utils/factorywithautoid.hpp
+ * \brief The FactoryWithAutoId class provides a generic factory which create its own id for each class as they are added to the factory.
+ *
+ * Unlike the basic Factory class, which requires the id to be passed along when you register a new class, the FactoryWithAutoId
+ * generates one on its own via its Storage policy.
+ */
 template<	class AbstractProduct,
             class IdentifierType,
             template<class, class, class> class Storage = SimpleVectorStorage,

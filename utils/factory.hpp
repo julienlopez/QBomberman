@@ -8,6 +8,15 @@
 
 BEGIN_NAMESPACE_UTILS
 
+/**
+ * \class Factory factory.hpp utils/factory.hpp
+ * \brief The Factory class provides a generic factory to create object in a polymorphic setting.
+ *
+ * The Factory works with an AbstractProcuct, a type define as the common interface for all the classes registered in the factory.
+ * As new classes inheriting this interface are implemented, they are to be registered to the factory using the registerProduct() method.
+ * An id if type IdentifierType is required for each class being registered in the factory.\n
+ * This id can later be used to create a new instance of the desired class, using the create() method with the proper id.
+ */
 template<	class AbstractProduct,
 			class IdentifierType,
 			class ProductCreator = AbstractProduct*(*)(),

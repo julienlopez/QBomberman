@@ -6,6 +6,7 @@
 BEGIN_NAMESPACE_UTILS
 
 /**
+  * \class noncopiable noncopiable.hpp utils/noncopiable.hpp
   * \brief Defines a non-copiable class.
   */
 class noncopiable

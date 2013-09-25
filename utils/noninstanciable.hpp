@@ -6,6 +6,7 @@
 BEGIN_NAMESPACE_UTILS
 
 /**
+  * \class noninstanciable noninstanciable.hpp utils/noninstanciable.hpp
   * \brief Defines a non-instanciable class.
   */
 class noninstanciable

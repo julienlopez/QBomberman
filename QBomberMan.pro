@@ -31,9 +31,9 @@ SOURCES += main.cpp\
     utils/utils.cpp \
     systems/movement.cpp \
     systems/screendisplay.cpp \
-    systems/inputhandler.cpp \
-    components/inputtovelocity.cpp \
-    systems/physics.cpp
+    systems/physics.cpp \
+    systems/movementinputhandler.cpp \
+    components/player.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -65,8 +65,8 @@ HEADERS  += mainwindow.hpp \
     systems/requirementmaker.hpp \
     static_tests/test_parameter_traits.hpp \
     systems/screendisplay.hpp \
-    systems/inputhandler.hpp \
-    components/inputtovelocity.hpp \
     systems/updatepolicies.hpp \
     utils/safepointer.hpp \
-    systems/physics.hpp
+    systems/physics.hpp \
+    systems/movementinputhandler.hpp \
+    components/player.hpp

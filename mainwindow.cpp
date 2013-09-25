@@ -2,7 +2,7 @@
 #include "screen.hpp"
 
 #include <systems/systemmanager.hpp>
-#include <systems/inputhandler.hpp>
+#include <systems/movementinputhandler.hpp>
 
 #include <QVBoxLayout>
 #include <QTimer>
@@ -25,9 +25,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     SystemManager::addScreenDisplaySystem(m_screen);
 
-    InputHandler* inputHandler = new InputHandler;
-    currentKeyChanged().connect(std::bind(&InputHandler::setCurrentKey, inputHandler, std::placeholders::_1));
-    SystemManager::add(SystemManager::up_system(inputHandler));
+    MovementInputHandler* movementInputHandler = new MovementInputHandler;
+    currentKeyChanged().connect(std::bind(&MovementInputHandler::setCurrentKey, movementInputHandler, std::placeholders::_1));
+    SystemManager::add(SystemManager::up_system(movementInputHandler));
 
     SystemManager::addMovementSystem();
     SystemManager::addPhysicsSystem();

@@ -8,7 +8,7 @@
 #include "components/graphic.hpp"
 #include "components/screenposition.hpp"
 #include "components/velocity.hpp"
-#include "components/inputtovelocity.hpp"
+#include <components/player.hpp>
 
 Entity::type_list_components createTileEntity(const std::string& fileName, int x, int y)
 {
@@ -28,7 +28,7 @@ Entity::type_list_components spawnPlayer()
     Graphic* graphic = new Graphic("images/player.png");
     res.push_back(Entity::up_component(graphic));
     res.push_back(Entity::up_component(new Velocity));
-    res.push_back(Entity::up_component(new InputToVelocity));
+    res.push_back(Entity::up_component(new Player));
     return res;
 }
 

@@ -25,6 +25,12 @@ public:
 
     type_key key() const;
 
+    void clear();
+    bool empty() const;
+
+    //TODO remove if entities become "just an id"
+    bool operator==(const Entity& e) const;
+
 private:
     type_key m_key;
     type_list_components m_components;

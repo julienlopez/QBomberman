@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     SystemManager::addMovementSystem();
     SystemManager::addPhysicsSystem();
+    SystemManager::addLifeTimeManager();
+    SystemManager::addBombTrigger();
 
     startTimer();
 }

@@ -2,6 +2,8 @@
 #include "screendisplay.hpp"
 #include "movement.hpp"
 #include "physics.hpp"
+#include "lifetimemanager.hpp"
+#include "bombtrigger.hpp"
 
 SystemManager::SystemManager()
 {
@@ -18,6 +20,7 @@ void SystemManager::update(double dt)
     {
         s->update(dt);
     }
+    EntityManager::removeScheduledEntities();
 }
 
 void SystemManager::add(up_system&& system)
@@ -38,4 +41,13 @@ void SystemManager::addMovementSystem()
 void SystemManager::addPhysicsSystem()
 {
     add(SystemManager::up_system(SystemFactory::create(Physics::s_key)));
+}
+
+void SystemManager::addLifeTimeManager()
+{
+    add(SystemManager::up_system(SystemFactory::create(LifeTimeManager::s_key)));
+}
+void SystemManager::addBombTrigger()
+{
+    add(SystemManager::up_system(SystemFactory::create(BombTrigger::s_key)));
 }

@@ -25,6 +25,22 @@ Entity::type_key Entity::key() const
     return m_key;
 }
 
+void Entity::clear()
+{
+    m_components.clear();
+    m_key = 0;
+}
+
+bool Entity::empty() const
+{
+    return m_components.empty();
+}
+
+bool Entity::operator==(const Entity& e) const
+{
+    return m_components == e.m_components;
+}
+
 Entity::type_key Entity::makeKey(const type_list_components& lst)
 {
     type_key res = 0;

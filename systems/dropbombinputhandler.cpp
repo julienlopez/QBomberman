@@ -7,14 +7,11 @@ void DropBombInputHandler::setCurrentKey(QBomberMan::KEYS currentKey)
 {
     m_haveToDropBomb = (currentKey==QBomberMan::SPACE);
 }
-#include <QDebug>
+
 void DropBombInputHandler::do_update(Entity& entity, double)
 {
     if(!m_haveToDropBomb) return;
     ScreenPosition& position = EntityManager::getComponent<ScreenPosition>(entity);
-    qDebug() << "droping a bomb at " << position.pos().x() << ", " << position.pos().y();
-
-    EntityManager::createBomb(position);
-
+    EntityManager::createBomb(position, 5);
     m_haveToDropBomb = false;
 }

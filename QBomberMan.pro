@@ -14,7 +14,8 @@ greaterThan(QT_MAJOR_VERSION,4):QT+=widgets
 
 INCLUDEPATH += .
 
-QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -pedantic -Wpointer-arith -Wcast-align -Wwrite-strings -Wredundant-decls -Winline -Wno-long-long -Wuninitialized
+# -Wshadow -Wmissing-declarations
 
 include(QBomberMan.pri)
 
@@ -35,7 +36,10 @@ SOURCES += main.cpp\
     systems/movementinputhandler.cpp \
     components/player.cpp \
     systems/dropbombinputhandler.cpp \
-    components/collisionbox.cpp
+    components/collisionbox.cpp \
+    components/lifetime.cpp \
+    systems/lifetimemanager.cpp \
+    systems/bombtrigger.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -73,4 +77,7 @@ HEADERS  += mainwindow.hpp \
     systems/movementinputhandler.hpp \
     components/player.hpp \
     systems/dropbombinputhandler.hpp \
-    components/collisionbox.hpp
+    components/collisionbox.hpp \
+    components/lifetime.hpp \
+    systems/lifetimemanager.hpp \
+    systems/bombtrigger.hpp

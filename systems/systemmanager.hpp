@@ -28,6 +28,8 @@ public:
 
     static void addMovementSystem();
     static void addPhysicsSystem();
+    static void addLifeTimeManager();
+    static void addBombTrigger();
 
 private:
     SystemManager();

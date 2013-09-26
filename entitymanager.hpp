@@ -25,7 +25,11 @@ public:
 
     static void for_each(std::function<void(Entity&)> f);
 
-    static void createBomb(const ScreenPosition& position);
+    static void createBomb(const ScreenPosition& position, double lifeTime);
+
+    static void scheduleToRemoveEntity(Entity& entity);
+
+    static void removeScheduledEntities();
 
     template<class COMPONENT> static COMPONENT& getComponent(Entity& entity)
     {
@@ -43,9 +47,9 @@ public:
 private:
     EntityManager() = default;
 
-    typedef std::vector<Entity> type_containr;
-
+    using type_containr = std::vector<Entity>;
     type_containr m_entities;
+    std::list<type_containr::iterator> m_entitiesToRemove;
 };
 
 #endif

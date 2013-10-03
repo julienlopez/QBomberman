@@ -3,10 +3,10 @@
 
 MovementInputHandler::MovementInputHandler()
 {
-    m_map[QBomberMan::UP] = PointF(0, -.1);
-    m_map[QBomberMan::DOWN] = PointF(0, .1);
-    m_map[QBomberMan::LEFT] = PointF(-.1, 0);
-    m_map[QBomberMan::RIGHT] = PointF(.1, 0);
+    m_map[QBomberMan::UP] = PointF(0, -.90);
+    m_map[QBomberMan::DOWN] = PointF(0, .90);
+    m_map[QBomberMan::LEFT] = PointF(-.90, 0);
+    m_map[QBomberMan::RIGHT] = PointF(.90, 0);
 }
 
 void MovementInputHandler::setCurrentKey(QBomberMan::KEYS currentKey)
@@ -14,7 +14,7 @@ void MovementInputHandler::setCurrentKey(QBomberMan::KEYS currentKey)
     m_currentKey = currentKey;
 }
 
-void MovementInputHandler::do_update(Entity& entity, double)
+void MovementInputHandler::do_update(EntityManager::EntityId entity, double)
 {
     Velocity& v = EntityManager::getComponent<Velocity>(entity);
     v.m_vector = key2Velocity(m_currentKey);

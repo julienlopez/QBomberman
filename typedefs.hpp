@@ -7,6 +7,8 @@ namespace QBomberMan {
 
 typedef uint16_t type_key;
 
+using EntityId = uint16_t;
+
 enum KEYS {NONE, UP, DOWN, LEFT, RIGHT, SPACE};
 
 }

@@ -11,7 +11,7 @@ public:
     LifeTimeManager() = default;
 
 private:
-    virtual void do_update(Entity& entity, double dt) override;
+    virtual void do_update(EntityManager::EntityId entity, double dt) override;
 };
 
 #endif // LIFETIMEMANAGER_HPP

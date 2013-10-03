@@ -52,7 +52,7 @@ MainWindow::type_signal_current_key& MainWindow::currentKeyChanged()
 
 void MainWindow::startTimer() {
     m_majTimer = new QTimer(this);
-    m_majTimer->setInterval(s_dt);
+    m_majTimer->setInterval(s_dt*1000);
     connect(m_majTimer, SIGNAL(timeout()), this, SLOT(onMajTimerTimeout()));
     m_majTimer->start();
 }

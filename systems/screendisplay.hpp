@@ -14,7 +14,7 @@ public:
     ScreenDisplay(Screen* screen = 0);
 
 private:
-    virtual void do_update(Entity& entity, double dt) override;
+    virtual void do_update(EntityManager::EntityId entity, double dt) override;
 
     Screen* m_screen;
 };

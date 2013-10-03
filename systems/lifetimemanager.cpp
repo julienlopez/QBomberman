@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-void LifeTimeManager::do_update(Entity& entity, double dt)
+void LifeTimeManager::do_update(EntityManager::EntityId entity, double dt)
 {
     LifeTime& lifeTime = EntityManager::getComponent<LifeTime>(entity);
     qDebug() << "do_update(" << dt << ") : " << lifeTime.timeLeft();

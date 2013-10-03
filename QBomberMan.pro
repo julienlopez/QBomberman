@@ -39,7 +39,9 @@ SOURCES += main.cpp\
     components/collisionbox.cpp \
     components/lifetime.cpp \
     systems/lifetimemanager.cpp \
-    systems/bombtrigger.cpp
+    systems/bombtrigger.cpp \
+    components/explosionimpact.cpp \
+    entitycreator.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -80,4 +82,7 @@ HEADERS  += mainwindow.hpp \
     components/collisionbox.hpp \
     components/lifetime.hpp \
     systems/lifetimemanager.hpp \
-    systems/bombtrigger.hpp
+    systems/bombtrigger.hpp \
+    utils/idgenerator.hpp \
+    components/explosionimpact.hpp \
+    entitycreator.hpp

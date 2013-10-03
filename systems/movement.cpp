@@ -7,7 +7,7 @@ Movement::Movement()
 {
 }
 
-void Movement::do_update(Entity& entity, double dt)
+void Movement::do_update(EntityManager::EntityId entity, double dt)
 {
     Velocity& v = EntityManager::getComponent<Velocity>(entity);
     ScreenPosition& pos = EntityManager::getComponent<ScreenPosition>(entity);

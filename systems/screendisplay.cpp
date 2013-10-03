@@ -5,7 +5,7 @@
 ScreenDisplay::ScreenDisplay(Screen* screen): m_screen(screen)
 {}
 
-void ScreenDisplay::do_update(Entity& entity, double)
+void ScreenDisplay::do_update(EntityManager::EntityId entity, double)
 {
     if(!m_screen) return;
     Graphic& g = EntityManager::getComponent<Graphic>(entity);

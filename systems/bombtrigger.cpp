@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-void BombTrigger::do_update(Entity& entity, double)
+void BombTrigger::do_update(EntityManager::EntityId entity, double)
 {
     LifeTime& lifeTime = EntityManager::getComponent<LifeTime>(entity);
     if(lifeTime.isDead()) {

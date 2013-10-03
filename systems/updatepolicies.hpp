@@ -11,29 +11,29 @@ protected:
     void dispatchEntitiesForUpdate(double dt)
     {
         T& s = static_cast<T&>(*this);
-        EntityManager::for_each([&s, dt](Entity& e)
+        EntityManager::for_each([&s, dt](EntityManager::EntityId entity, EntityManager::type_entity_key key)
         {
-            if((e.key() & s.requirement()) != s.requirement()) return;
-            static_cast<OneByOnePolicy<T>&>(s).do_update(e, dt);
+            if((key & s.requirement()) != s.requirement()) return;
+            static_cast<OneByOnePolicy<T>&>(s).do_update(entity, dt);
         });
     }
 
-    virtual void do_update(Entity& entity, double dt) =0;
+    virtual void do_update(EntityManager::EntityId entity, double dt) =0;
 };
 
 template<class T> class ListPolicy
 {
 public:
-    using type_list_entities = std::list<utils::safe_pointer<Entity>>;
+    using type_list_entities = std::list<EntityManager::EntityId>;
 protected:
     void dispatchEntitiesForUpdate(double dt)
     {
         T& s = static_cast<T&>(*this);
         type_list_entities lst;
-        EntityManager::for_each([&lst, &s](Entity& e)
+        EntityManager::for_each([&lst, &s](EntityManager::EntityId entity, EntityManager::type_entity_key key)
         {
-            if((e.key() & s.requirement()) != s.requirement()) return;
-            lst.emplace_back(&e);
+            if((key & s.requirement()) != s.requirement()) return;
+            lst.push_back(entity);
 
         });
         static_cast<ListPolicy<T>&>(s).do_update(std::move(lst), dt);

@@ -1,53 +1,33 @@
 #include "entitymanager.hpp"
-#include <components/screenposition.hpp>
-#include <components/graphic.hpp>
-#include <components/lifetime.hpp>
 
-EntityManager::type_key EntityManager::geTkey(type_id id)
-{
-    EntityManager& inst = instance();
-//    type_map::const_iterator i = inst.m_entities.find(id);
-//    if(i == inst.m_entities.end()) return 0;
-//    return i->second.key;
-    if(id >= inst.m_entities.size()) return 0;
-    return inst.m_entities[id].key();
-}
-
+//#include <QDebug>
 EntityManager::type_key EntityManager::addEntity(Entity::type_list_components&& lst)
 {
     EntityManager& inst = instance();
-    type_key res = inst.m_entities.size();
-    inst.m_entities.emplace_back(std::move(lst));
+    type_key res = inst.createNewEntity();
+//    for(up_component&& c : lst)
+    for(Entity::type_list_components::iterator i = lst.begin(); i != lst.end(); ++i)
+    {
+//        inst.addComponent(res, std::move(c));
+        inst.addComponent(res, std::move(*i));
+    }
     return res;
 }
 
-void EntityManager::for_each(std::function<void(Entity&)> f)
+void EntityManager::for_each(std::function<void(EntityId, type_entity_key)> f)
 {
     EntityManager& inst = instance();
-    for(Entity& e : inst.m_entities)
+    for(auto& p : inst.m_entitiesKeys)
     {
-        f(e);
+        f(p.first, p.second);
     }
 }
 
-void EntityManager::createBomb(const ScreenPosition& position, double lifeTime)
-{
-    Entity::type_list_components lst;
-    Entity::up_component pos(position.clone());
-    lst.push_back(std::move(pos));
-    Entity::up_component graphic(new Graphic("images/bomb.png"));
-    lst.push_back(std::move(graphic));
-    Entity::up_component lt(new LifeTime(lifeTime));
-    lst.push_back(std::move(lt));
-    addEntity(std::move(lst));
-}
-
-void EntityManager::scheduleToRemoveEntity(Entity& entity)
+void EntityManager::scheduleToRemoveEntity(EntityId entity)
 {
     EntityManager& inst = instance();
-    type_containr::iterator i = std::find(inst.m_entities.begin(), inst.m_entities.end(), entity);
-    assert(i != inst.m_entities.end());
-    inst.m_entitiesToRemove.push_back(i);
+    assert(inst.exists(entity));
+    inst.m_entitiesToRemove.push_back(entity);
 }
 
 void EntityManager::removeScheduledEntities()
@@ -55,8 +35,51 @@ void EntityManager::removeScheduledEntities()
     EntityManager& inst = instance();
     for(auto i : inst.m_entitiesToRemove)
     {
-        i->clear();
+        inst.m_entitiesComponents.erase(i);
+        inst.m_entitiesKeys.erase(i);
     }
-    inst.m_entities.erase(std::remove_if(inst.m_entities.begin(), inst.m_entities.end(), std::bind(&Entity::empty, std::placeholders::_1)), inst.m_entities.end());
     inst.m_entitiesToRemove.clear();
+}
+
+bool EntityManager::exists(EntityId entity) const
+{
+    return find(entity) != m_entitiesKeys.end();
+}
+
+EntityManager::type_map_entities_keys::const_iterator EntityManager::find(EntityId entity) const
+{
+    return m_entitiesKeys.find(entity);
+}
+
+std::pair<EntityManager::type_multimap_entities_components::const_iterator, EntityManager::type_multimap_entities_components::const_iterator>
+EntityManager::getComponents(EntityId entity) const
+{
+    return m_entitiesComponents.equal_range(entity);
+}
+
+std::pair<EntityManager::type_multimap_entities_components::iterator, EntityManager::type_multimap_entities_components::iterator>
+EntityManager::getComponents(EntityId entity)
+{
+    return m_entitiesComponents.equal_range(entity);
+}
+
+EntityManager::type_entity_key EntityManager::createNewEntity()
+{
+    type_entity_key res = m_idGenerator();
+    assert(!exists(res));
+    auto p = m_entitiesKeys.insert(std::make_pair(res, 0));
+    assert(p.second);
+    return res;
+}
+
+void EntityManager::addComponent(EntityId entity, up_component&& component)
+{
+    m_entitiesKeys[entity] |= component->key();
+    m_entitiesComponents.insert(std::make_pair(entity, std::move(component)));
+}
+
+EntityManager::type_multimap_entities_components::iterator EntityManager::findComponentByKey(EntityId entity, Component::type_key key)
+{
+    auto p = getComponents(entity);
+    return std::find_if(p.first, p.second, [&key](const type_multimap_entities_components::value_type& pair){ return pair.second->key() == key; });
 }

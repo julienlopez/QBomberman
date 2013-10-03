@@ -1,7 +1,6 @@
 #ifndef CRTP_COMPONENT_HPP
 #define CRTP_COMPONENT_HPP
 
-#include "component.hpp"
 #include "componentfactory.hpp"
 
 template<class T> class CRTP_Component : public Component

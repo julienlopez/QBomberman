@@ -21,7 +21,7 @@ private:
     QBomberMan::KEYS m_currentKey;
     type_map m_map;
 
-    virtual void do_update(Entity& entity, double dt) override;
+    virtual void do_update(EntityManager::EntityId entity, double dt) override;
 
     PointF key2Velocity(QBomberMan::KEYS key) const;
 };

@@ -25,7 +25,7 @@ private:
     QTimer* m_majTimer;
     type_signal_current_key m_currentKeyChanged;
 
-    static constexpr double s_dt = .2;
+    static constexpr double s_dt = .01;
 
     void startTimer();
 
